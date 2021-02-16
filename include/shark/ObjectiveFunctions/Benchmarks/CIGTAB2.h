@@ -97,11 +97,11 @@ struct CIGTAB2 : public MultiObjectiveFunction {
 		SearchPointType y = blas::prod( m_rotationMatrixY, x );
 		SearchPointType z = blas::prod( m_rotationMatrixZ, x );
 		double result_1 = y(0) * y(0) + m_a * m_a * y(numberOfVariables()-1) * y(numberOfVariables()-1);
-		double result_2 = z(0) * z(0) + m_a * m_a * z(numberOfVariables()-1) * z(numberOfVariables()-1);
+		double result_2 = (z(0) - 2.) * (z(0) - 2.) + m_a * m_a * z(numberOfVariables()-1) * z(numberOfVariables()-1);
 
 		for (unsigned i = 1; i < numberOfVariables() - 1; i++) {
 			result_1 += m_a * y( i ) * y( i );
-			result_2 += m_a * (z( i ) - 2) * (z( i ) - 2);
+			result_2 += m_a * (z( i ) - 2.) * (z( i ) - 2.);
 		}
 
 		value[0] = result_1 / (m_a * m_a * numberOfVariables());
