@@ -181,8 +181,9 @@ void randomRotationMatrix(random::rng_type& rng, matrix_container<MatrixT, cpu_t
 		}
 		subrange(v,0,i) /=norm_2(subrange(v,0,i));//project on sphere
 		
-		double v0 = v(0);
-		v(0) += v0/std::abs(v0);
+		const double v0 = v(0);
+		const double sgn = v0 / std::abs(v0);
+		v(0) += sgn;
 		
 		//compute new norm of v
 		//~ double normvSqr = 1.0+(1+v0)*(1+v0)-v0*v0;
@@ -191,6 +192,7 @@ void randomRotationMatrix(random::rng_type& rng, matrix_container<MatrixT, cpu_t
 		//apply the householder rotation to the i-th submatrix
 		applyHouseholderOnTheLeft(subrange(matrix,size-i,size,size-i,size),subrange(v,0,i),2.0/normvSqr);
 		
+		subrange(matrix,size-i,size,size-i,size) *= -sgn;
 	}
 }
 
