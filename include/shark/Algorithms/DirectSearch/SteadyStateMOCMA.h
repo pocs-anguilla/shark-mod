@@ -45,7 +45,7 @@ namespace shark {
 ///
 /// Please see the following papers for further reference:
 /// - Igel, Suttorp and Hansen. Steady-state Selection and Efficient Covariance Matrix Update in the Multi-Objective CMA-ES.
-/// - Voﬂ, Hansen and Igel. Improved Step Size Adaptation for the MO-CMA-ES.
+/// - Vo√ü, Hansen and Igel. Improved Step Size Adaptation for the MO-CMA-ES.
 /// \ingroup multidirect
 template<typename Indicator=HypervolumeIndicator>
 class IndicatorBasedSteadyStateMOCMA : public AbstractMultiObjectiveOptimizer<RealVector >{
@@ -226,11 +226,11 @@ protected:
 		IndividualType& offspring = m_parents.back();
 		IndividualType& parent = m_parents[offspring.parent()];
 		
-		if (m_notionOfSuccess == IndividualBased && offspring.selected()) {
+		if (m_notionOfSuccess == PopulationBased && offspring.selected()) {
 			offspring.updateAsOffspring();
 			parent.updateAsParent(CMAChromosome::Successful);
 		}
-		else if (m_notionOfSuccess == PopulationBased && offspring.selected() && offspring.rank() <= parent.rank() ) {
+		else if (m_notionOfSuccess == IndividualBased && offspring.selected() && offspring.rank() <= parent.rank()) {
 			offspring.updateAsOffspring();
 			parent.updateAsParent(CMAChromosome::Successful);
 		}else{
