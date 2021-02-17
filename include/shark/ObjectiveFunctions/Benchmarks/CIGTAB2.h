@@ -57,7 +57,7 @@ namespace shark {namespace benchmarks{
 */
 struct CIGTAB2 : public MultiObjectiveFunction {
 
-	CIGTAB2(std::size_t numberOfVariables = 5) : m_a( 1E-6 ) {
+	CIGTAB2(std::size_t numberOfVariables = 5) : m_a( 1E3 ) {
 		m_features |= CAN_PROPOSE_STARTING_POINT;
 		m_numberOfVariables = numberOfVariables;
 	}

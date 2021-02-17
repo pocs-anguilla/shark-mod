@@ -58,7 +58,7 @@ namespace shark {namespace benchmarks{
 */
 struct ELLI2 : public MultiObjectiveFunction{
 
-	ELLI2(std::size_t numVariables = 0) : m_a( 1E6 ){
+	ELLI2(std::size_t numVariables = 0) : m_a( 1E3 ){
 		m_features |= CAN_PROPOSE_STARTING_POINT;
 		setNumberOfVariables(numVariables);
 	}
