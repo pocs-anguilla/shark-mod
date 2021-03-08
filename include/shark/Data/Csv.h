@@ -47,6 +47,7 @@
 
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 namespace shark {
 
